@@ -17,6 +17,7 @@ const newOrder = {
 
 const signInSuccess = function (response) {
   store.user = response.user
+  store.orderStatus = 'new'
   $('#display-message').removeClass('hidden')
   $('#display-message').html('Sign in successful!')
   $('#display-message').css('color', 'green')
@@ -94,6 +95,7 @@ const signOutSuccess = function () {
   $('#display-products').addClass('hidden')
   $('#display-orders').addClass('hidden')
   $('.table').addClass('hidden')
+  $('.order').addClass('hidden')
 }
 
 const failure = function () {
