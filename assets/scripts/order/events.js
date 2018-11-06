@@ -3,6 +3,7 @@
 const getFormFields = require('../../../lib/get-form-fields')
 const api = require('./api')
 const ui = require('./ui')
+const store = require('../store.js')
 
 const onCreate = function (event) {
   event.preventDefault()
@@ -46,9 +47,23 @@ const onDestroy = function (event) {
 }
 
 const onAddToCart = function (event) {
+  const idHtml = $('.product-element').html()
+  // const nameHtml = $('.product-name').html()
+  const priceHtml = $('.product-price').html()
+  // console.log('event target section data id inside onAddToCart is ', idHtml, nameHtml, priceHtml)
+  const orderData = {
+    order: {
+      products: `${idHtml}`,
+      total: `${priceHtml}`,
+      purchased: false
+    }
+  }
+  // const orderData = 'cat'
+  // const orderDataJson = JSON.stringify(orderData)
+  console.log(orderData)
+  console.log(store.orderStatus)
   event.preventDefault()
-  const data = getFormFields(event.target)
-  api.addToCart(data)
+  api.createOrder(orderData)
     .then(ui.addToCartSuccess)
     .catch(ui.failure)
 }
