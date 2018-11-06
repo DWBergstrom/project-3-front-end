@@ -32,6 +32,17 @@
         <h2>Your current order status is:</h2>
         <p id="products-in-order">Items:  </p>
         <p id="order-total">Order total:  </p>
+        <form action="your-server-side-code" method="POST">
+          <script
+            src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+            data-key="pk_test_o7jSVV2xJmBWPs9DsgICx8C9"
+            data-amount="0"
+            data-name="Nozama"
+            data-description="Order Confirmation"
+            data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+            data-locale="auto">
+          </script>
+        </form>
       </section>
       <br />
       <button id="sign-out-button" class="hidden">Sign Out!</button>

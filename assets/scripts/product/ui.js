@@ -27,7 +27,12 @@ const indexProductsSuccess = function (data) {
     $('#update-order-form').trigger('reset')
     $('#show-order-form').trigger('reset')
     $('#delete-order-form').trigger('reset')
+    $('.product-table').on('click', 'button', onAddToOrder)
   }
+}
+
+const onAddToOrder = function (event) {
+  console.log(event)
 }
 
 const showProductSuccess = function (data) {
