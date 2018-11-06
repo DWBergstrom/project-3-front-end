@@ -11,6 +11,7 @@
       <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
       <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
 
+
     </head>
     <body>
       <h1>Nozama</h1>
@@ -28,26 +29,23 @@
         <input required name=credentials[password] type="password" placeholder="Password" />
         <input type="submit" />
       </form>
+      <button id="sign-out-button" class="hidden">Sign Out!</button>
+      <form id="change-password-form" class="hidden">
+        <legend>Change Password!</legend>
+        <input required name=passwords[old] type="password" placeholder="Old Password" />
+        <input required name=passwords[new] type="password" placeholder="New Password" />
+        <input type="submit" />
+      </form>
       <section class="order hidden">
         <br />
         <h2>Your current order status is:</h2><p id="order-status">Nothing in your order yet.</p>
         <h2>Your current order ID is:</h2><p id="order-id">No order ID yet. Add something to your cart!</p>
         <p>Items:  </p><p id="products-in-order"></p>
         <p>Order total:  </p><p id="order-total"></p>
-        <!-- <form action="charges" method="POST">
-          <script>
-            src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-            data-key="pk_test_o7jSVV2xJmBWPs9DsgICx8C9"
-            data-amount="100"≠
-            data-name="Nozama"
-            data-description="Order Confirmation"
-            data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-            data-locale="auto">≠≠
-          </script>
-        </form> -->
+
         <script src="https://checkout.stripe.com/checkout.js"></script>
 
-        <button id="customButton">Purchase</button>
+        <button id="customButton" class="hidden stripe-button btn btn-primary">Purchase</button>
 
         <script>
         var handler = StripeCheckout.configure({
@@ -55,20 +53,14 @@
           image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
           locale: 'auto',
           token: function(token) {
-            console.log(token)
-
-            // curl https://api.stripe.com/v1/customers \
-            //  -u sk_test_k5orqmsiNDI5QaGeGGGzhVmq: \
-            //  -d source=tok_1DUK73DdM0iinGDarmvB3ll9 \
-            //  -d description="Emily Moore" \
-            //  -d email="emily.moore.37@example.com"
+            // console.log(token)
 
             const stripeData = {
-                email: 'dwb@db.com',
+                email: 'e@e.com',
                 source: token,
-                amount: '1000',
+                amount: '500',
                 currency: 'usd',
-                description: 'test'
+                description: 'energy drink'
             }
 
             const stripeOrder = function (stripeData) {
@@ -81,11 +73,27 @@
                 data: stripeData
               })
             }
-
             stripeOrder(stripeData)
-
-            // You can access the token ID with `token.id`.
-            // Get the token ID to your server-side code for use.
+              .then(function (response) {
+                if (response === 'Created') {
+                  $('#order-status-message').html('Your payment was succesful!')
+                  // store.orderStatus = 'new'
+                  const newOrder = {
+                    products: 'Nothing in your cart yet',
+                    purchased: 'false',
+                    total: '0'
+                  }
+                  $('#products-in-order').html(newOrder.products)
+                  $('#order-total').html(newOrder.total)
+                  $('#order-id').html('')
+                  $('#order-id').html('No order ID yet. Add something to your cart!')
+                  $('#order-status').html('')
+                  $('#order-status').html('Nothing in your order')
+                  $('.stripe-button').addClass('hidden')
+                } else {
+                  $('#order-status-message').html('There was a problem charging your card. Please try again.')
+                }
+              })
           }
         });
 
@@ -106,22 +114,17 @@
         </script>
         <button id="cancel-order-button" class="hidden">Cancel Order</button>
         <h2 id="empty-order-message" class="hidden"></h2>
+        <h2 id="order-status-message" class="hidden"></h2>
       </section>
       <br />
-      <button id="sign-out-button" class="hidden">Sign Out!</button>
-      <form id="change-password-form" class="hidden">
-        <legend>Change Password!</legend>
-        <input required name=passwords[old] type="password" placeholder="Old Password" />
-        <input required name=passwords[new] type="password" placeholder="New Password" />
-        <input type="submit" />
-      </form>
+
       <br />
       <div id="products">
-        <form id="show-product-form" class="hidden">
+        <!-- <form id="show-product-form" class="hidden">
           <legend>View One Product</legend>
           <input required name="product[id]" type="text" placeholder="ID" />
           <input type="submit" />
-        </form>
+        </form> -->
         <br />
         <div class="container">
           <table class="table table-hover hidden table-striped table-bordered">
