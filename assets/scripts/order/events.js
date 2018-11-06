@@ -47,25 +47,59 @@ const onDestroy = function (event) {
 }
 
 const onAddToCart = function (event) {
-  const idHtml = $('.product-element').html()
-  // const nameHtml = $('.product-name').html()
-  const priceHtml = $('.product-price').html()
-  // console.log('event target section data id inside onAddToCart is ', idHtml, nameHtml, priceHtml)
-  const orderData = {
-    order: {
-      products: `${idHtml}`,
-      total: `${priceHtml}`,
-      purchased: false
+  if (store.orderStatus === 'new') {
+    const idHtml = $('.product-element').html()
+    // const nameHtml = $('.product-name').html()
+    const priceHtml = $('.product-price').html()
+    const orderData = {
+      order: {
+        products: `${idHtml}`,
+        total: `${priceHtml}`,
+        purchased: false
+      }
     }
+    event.preventDefault()
+    api.createOrder(orderData)
+      .then(ui.addToCartSuccess)
+      .catch(ui.failure)
+  } else {
+    const idHtml = $('.product-element').html()
+    // const nameHtml = $('.product-name').html()
+    const priceHtml = $('.product-price').html()
+    const currentItemTotal = parseInt(store.orderTotal)
+    const currentOrderTotal = parseInt(priceHtml)
+    console.log('currentItemTotal in store in add to cart update is ', currentItemTotal)
+    console.log('currentOrderTotal in add to cart update is ', currentOrderTotal)
+    const orderTotal = currentItemTotal + currentOrderTotal
+    const orderData = {
+      order: {
+        products: `${idHtml}`,
+        total: `${orderTotal}`,
+        purchased: false
+      }
+    }
+    event.preventDefault()
+    api.updateOrder(orderData)
+      .then(ui.updateCartSuccess)
+      .catch(ui.failure)
   }
-  // const orderData = 'cat'
-  // const orderDataJson = JSON.stringify(orderData)
-  console.log(orderData)
-  console.log(store.orderStatus)
-  event.preventDefault()
-  api.createOrder(orderData)
-    .then(ui.addToCartSuccess)
-    .catch(ui.failure)
+  // const idHtml = $('.product-element').html()
+  // // const nameHtml = $('.product-name').html()
+  // const priceHtml = $('.product-price').html()
+  // // console.log('event target section data id inside onAddToCart is ', idHtml, nameHtml, priceHtml)
+  // const orderData = {
+  //   order: {
+  //     products: `${idHtml}`,
+  //     total: `${priceHtml}`,
+  //     purchased: false
+  //   }
+  // }
+  // // const orderData = 'cat'
+  // // const orderDataJson = JSON.stringify(orderData)
+  // event.preventDefault()
+  // api.createOrder(orderData)
+  //   .then(ui.addToCartSuccess)
+  //   .catch(ui.failure)
 }
 
 module.exports = {
