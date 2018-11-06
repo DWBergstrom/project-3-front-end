@@ -1,5 +1,7 @@
 'use strict'
 
+const store = require('../store.js')
+
 const createOrderSuccess = function (data) {
   $('#display-orders').html('')
   $('#orders-empty-message').addClass('hidden')
@@ -120,6 +122,8 @@ const destroyOrderSuccess = function () {
 
 const addToCartSuccess = function (data) {
   const order = data.order
+  store.orderStatus = 'existing'
+  console.log('store.orderStatus after adding one item to order in succes UI', store.orderStatus)
   $('#orders-empty-message').addClass('hidden')
   $('#display-message').html('Add successful!')
   $('#display-message').css('color', 'green')
