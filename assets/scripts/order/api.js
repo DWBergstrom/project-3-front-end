@@ -4,6 +4,7 @@ const config = require('../config.js')
 const store = require('../store.js')
 
 const createOrder = function (data) {
+  console.log('data in createOrder method is ', data)
   return $.ajax({
     url: config.apiUrl + '/orders',
     headers: {
@@ -36,11 +37,16 @@ const showOrder = function (orderData) {
 }
 
 const updateOrder = function (data) {
-  const orderId = data.order.id
+  const orderId = data.order_id.id
+  console.log('order id in updateOrder is ', data.order_id.id)
+  console.log('data.order in updateOrder is ', data.order)
+  console.log('user token is ', store.user.token)
+  delete data.order_id
+  console.log('data after delete is ', data)
   return $.ajax({
     url: config.apiUrl + `/orders/${orderId}`,
     headers: {
-      Authorizaiton: `Token token=${store.user.token}`
+      Authorization: `Token token=${store.user.token}`
     },
     method: 'PATCH',
     data

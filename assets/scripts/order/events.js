@@ -7,6 +7,7 @@ const ui = require('./ui')
 const onCreate = function (event) {
   event.preventDefault()
   const data = getFormFields(event.target)
+  console.log('data in onCreate method is ', data)
   api.createOrder(data)
     .then(ui.createOrderSuccess)
     .catch(ui.failure)
@@ -15,6 +16,7 @@ const onCreate = function (event) {
 const onUpdate = function (event) {
   event.preventDefault()
   const data = getFormFields(event.target)
+  console.log('data in order update is ', data)
   api.updateOrder(data)
     .then(ui.updateOrderSuccess)
     .catch(ui.failure)

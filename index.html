@@ -69,7 +69,7 @@
       <div id="order">
         <form id="create-order-form" class="hidden">
           <legend>Create An Order</legend>
-          <input required name="product[id]" type="number" placeholder="ID" />
+          <input required name="product[id]" type="text" placeholder="Product ID" />
           <input required name="order[total]" type="number" placeholder="Total" />
           <input required name="order[purchased]" type="text" placeholder="Purchased" />
           <input type="submit" />
@@ -79,13 +79,14 @@
         <br />
         <form id="show-order-form" class="hidden">
           <legend>View One Order</legend>
-          <input required name="order[id]" type="number" placeholder="ID" />
+          <input required name="order[id]" type="text" placeholder="Order ID" />
           <input type="submit" />
         </form>
         <br />
         <form id="update-order-form" class="hidden">
           <legend>Update An Order</legend>
-          <input required name="order[id]" type="text" placeholder="ID" />
+          <input required name="order[products]" type="text" placeholder="Product ID" />
+          <input required name="order_id[id]" type="text" placeholder="Order ID" />
           <input required name="order[total]" type="number" placeholder="Total" />
           <input required name="order[purchased]" type="text" placeholder="Purchased" />
           <input type="submit" />
@@ -93,7 +94,7 @@
         <br />
         <form id="delete-order-form" class="hidden">
           <legend>Delete An Order</legend>
-          <input required name="order[id]" type="number" placeholder="ID" />
+          <input required name="order[id]" type="text" placeholder="ID" />
           <input type="submit" />
         </form>
       </div>

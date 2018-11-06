@@ -23,6 +23,6 @@ $(() => {
   $('#create-order-form').on('submit', orderEvents.onCreate)
   $('#update-order-form').on('submit', orderEvents.onUpdate)
   $('#get-all-orders-button').on('click', orderEvents.onIndex)
-  $('#get-one-order-form').on('submit', orderEvents.onShow)
+  $('#show-order-form').on('submit', orderEvents.onShow)
   $('#delete-order-form').on('submit', orderEvents.onDestroy)
 })

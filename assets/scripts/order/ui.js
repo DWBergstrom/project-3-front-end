@@ -5,11 +5,12 @@ const createOrderSuccess = function (data) {
   $('#orders-empty-message').addClass('hidden')
   $('#display-message').html('Add successful!')
   $('display-message').css('color', 'green')
+  console.log('data in createOrderSuccess is ', data)
   const order = data.order
   const orderHtml = (`
     <p>Name: ${order.name}</p>
-    <h4>Price: ${order.price}</h4>
-    <h4>ID: ${order.id}</h4>
+    <h4>Total: ${order.price}</h4>
+    <h4>ID: ${order._id}</h4>
     </ br>
     `)
   $('#display-orders').html(orderHtml)
@@ -25,6 +26,7 @@ const createOrderSuccess = function (data) {
 }
 
 const indexOrdersSuccess = function (data) {
+  console.log('data in indexOrdersSuccess ', data)
   if (data.orders.length === 0) {
     $('#display-message').html('')
     $('#orders-empty-message').removeClass('hidden')
@@ -33,9 +35,9 @@ const indexOrdersSuccess = function (data) {
     $('display-orders').html('')
     data.orders.forEach(function (order) {
       const orderHtml = (`
-        <p>Name: ${order.name}</p>
-        <h4>Price: ${order.price}</h4>
-        <h4>ID: ${order.id}</h4>
+        <p>Name: ${order.products}</p>
+        <h4>Total: ${order.price}</h4>
+        <h4>ID: ${order._id}</h4>
         </ br>
         `)
       $('#display-orders').append(orderHtml)
@@ -53,14 +55,15 @@ const indexOrdersSuccess = function (data) {
 }
 
 const showOrderSuccess = function (data) {
-  $('#orders-empty-message').adClass('hidden')
+  console.log('data in show orders is ', data)
+  $('#orders-empty-message').addClass('hidden')
   $('#display-message').html('')
   $('#display-orders').html('')
   const order = data.order
   const orderHtml = (`
     <p>Name: ${order.name}</p>
-    <h4>Price: ${order.price}</h4>
-    <h4>ID: ${order.id}</h4>
+    <h4>Total: ${order.price}</h4>
+    <h4>ID: ${order._id}</h4>
     </ br>
     `)
   $('#display-orders').html(orderHtml)
