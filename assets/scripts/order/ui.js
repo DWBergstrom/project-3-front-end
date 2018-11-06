@@ -122,16 +122,22 @@ const destroyOrderSuccess = function () {
 
 const addToCartSuccess = function (data) {
   const order = data.order
-  store.orderStatus = 'existing'
-  console.log('store.orderStatus after adding one item to order in succes UI', store.orderStatus)
+  store.orderStatus = 'pending'
+  store.orderId = data.order._id
+  store.orderTotal = data.order.total
   $('#orders-empty-message').addClass('hidden')
   $('#display-message').html('Add successful!')
   $('#display-message').css('color', 'green')
-  $('#order-status').html(`${order.status}`)
+  $('#order-status').html(store.orderStatus)
+  $('#order-id').html(store.orderId)
   $('#products-in-order').html(`${order.products.length}`)
   $('#order-total').html(`${order.total}`)
   $('#view-one-product-form').trigger('reset')
   $('#change-password-form').trigger('reset')
+}
+
+const updateCartSuccess = function (data) {
+  console.log('data in updateCartSuccess is ', data)
 }
 
 const failure = function () {
@@ -157,5 +163,6 @@ module.exports = {
   updateOrderSuccess,
   destroyOrderSuccess,
   addToCartSuccess,
+  updateCartSuccess,
   failure
 }
