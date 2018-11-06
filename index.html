@@ -27,6 +27,12 @@
         <input required name=credentials[password] type="password" placeholder="Password" />
         <input type="submit" />
       </form>
+      <section class="order hidden">
+        <br />
+        <h2>Your current order status is:</h2>
+        <p id="products-in-order">Items:  </p>
+        <p id="order-total">Order total:  </p>
+      </section>
       <br />
       <button id="sign-out-button" class="hidden">Sign Out!</button>
       <form id="change-password-form" class="hidden">
@@ -50,7 +56,7 @@
       <div id="order">
         <form id="create-order-form" class="hidden">
           <legend>Create An Order</legend>
-          <input required name="product[id]" type="text" placeholder="Product ID" />
+          <input required name="order[products]" type="text" placeholder="Product ID" />
           <input required name="order[total]" type="number" placeholder="Total" />
           <input required name="order[purchased]" type="text" placeholder="Purchased" />
           <input type="submit" />

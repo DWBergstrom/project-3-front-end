@@ -9,12 +9,18 @@ const signUpSuccess = function () {
   $('#sign-up-form').trigger('reset')
 }
 
+const newOrder = {
+  products: 'Nothing in your cart yet',
+  purchased: 'false',
+  total: '0'
+}
+
 const signInSuccess = function (response) {
+  store.user = response.user
   $('#display-message').removeClass('hidden')
   $('#display-message').html('Sign in successful!')
   $('#display-message').css('color', 'green')
   $('sign-in-form').trigger('reset')
-  store.user = response.user
   $('#sign-up-form').addClass('hidden')
   $('#sign-in-form').addClass('hidden')
   $('#change-password-form').removeClass('hidden')
@@ -31,6 +37,9 @@ const signInSuccess = function (response) {
   $('#delete-order-form').removeClass('hidden')
   $('#display-products').removeClass('hidden')
   $('#display-orders').removeClass('hidden')
+  $('.order').removeClass('hidden')
+  $('#products-in-order').append(newOrder.products)
+  $('#order-total').append(newOrder.total)
 }
 
 const changePasswordSuccess = function () {
