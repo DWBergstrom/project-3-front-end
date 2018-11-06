@@ -119,37 +119,6 @@ const addToCartSuccess = function (data) {
   $('.stripe-button').removeClass('hidden')
 }
 
-// const updateCartSuccess = function () {
-//   store.orderTotal = store.orderTotal += 45
-//   store.orderQty = store.orderQty += 1
-//   $('#orders-empty-message').addClass('hidden')
-//   $('#display-message').html('Add successful!')
-//   $('#display-message').css('color', 'green')
-//   $('#order-status').html(store.orderStatus)
-//   $('#order-id').html(store.orderId)
-//   $('#products-in-order').html(`${store.orderQty}`)
-//   $('#order-total').html(`${store.orderTotal}`)
-//   $('#show-product-form').trigger('reset')
-//   $('#change-password-form').trigger('reset')
-// }
-
-// const addToCartSuccess = function (data) {
-//   const order = data.order
-//   store.orderStatus = 'pending'
-//   store.orderId = data.order._id
-//   store.orderTotal = data.order.total
-//   store.orderQty = order.products.length
-//   $('#orders-empty-message').addClass('hidden')
-//   $('#display-message').html('Add successful!')
-//   $('#display-message').css('color', 'green')
-//   $('#order-status').html(store.orderStatus)
-//   $('#order-id').html(store.orderId)
-//   $('#products-in-order').html(`${order.products.length}`)
-//   $('#order-total').html(`${order.total}`)
-//   $('#view-one-product-form').trigger('reset')
-//   $('#change-password-form').trigger('reset')
-// }
-
 const updateCartSuccess = function () {
   store.orderTotal = store.orderTotal += 45
   store.orderQty = store.orderQty += 1

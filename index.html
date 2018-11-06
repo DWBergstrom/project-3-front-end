@@ -65,7 +65,7 @@
 
             const stripeOrder = function (stripeData) {
               return $.ajax({
-                url: 'http://localhost:4741' + '/charges',
+                url: 'https://cryptic-peak-41846.herokuapp.com' + '/charges',
                 headers: {
                   Authorization: 'Bearer sk_test_k5orqmsiNDI5QaGeGGGzhVmq'
                 },
@@ -120,11 +120,6 @@
 
       <br />
       <div id="products">
-        <!-- <form id="show-product-form" class="hidden">
-          <legend>View One Product</legend>
-          <input required name="product[id]" type="text" placeholder="ID" />
-          <input type="submit" />
-        </form> -->
         <br />
         <div class="container">
           <table class="table table-hover hidden table-striped table-bordered">

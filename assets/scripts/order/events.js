@@ -49,41 +49,6 @@ const onDestroy = function (event) {
   }
 }
 
-// const onAddToCart = function (event) {
-//   if (store.orderStatus === 'new') {
-//     const idHtml = $('.product-element').html()
-//     const priceHtml = $('.product-price').html()
-//     const orderData = {
-//       order: {
-//         products: `${idHtml}`,
-//         total: `${priceHtml}`,
-//         purchased: false
-//       }
-//     }
-//     event.preventDefault()
-//     api.createOrder(orderData)
-//       .then(ui.addToCartSuccess)
-//       .catch(ui.failure)
-//   } else {
-//     const idHtml = $('.product-element').html()
-//     const priceHtml = $('.product-price').html()
-//     const currentItemTotal = parseInt(store.orderTotal)
-//     const currentOrderTotal = parseInt(priceHtml)
-//     const orderTotal = currentItemTotal + currentOrderTotal
-//     const orderData = {
-//       order: {
-//         products: `${idHtml}`,
-//         total: `${orderTotal}`,
-//         purchased: false
-//       }
-//     }
-//     event.preventDefault()
-//     api.updateOrder(orderData)
-//       .then(ui.updateCartSuccess)
-//       .catch(ui.failure)
-//   }
-// }
-
 const onAddToCart = function (event) {
   if (store.orderStatus === 'new') {
     const idHtml = $('.product-element').html()
@@ -119,23 +84,6 @@ const onAddToCart = function (event) {
       .then(ui.updateCartSuccess)
       .catch(ui.failure)
   }
-  // const idHtml = $('.product-element').html()
-  // // const nameHtml = $('.product-name').html()
-  // const priceHtml = $('.product-price').html()
-  // // console.log('event target section data id inside onAddToCart is ', idHtml, nameHtml, priceHtml)
-  // const orderData = {
-  //   order: {
-  //     products: `${idHtml}`,
-  //     total: `${priceHtml}`,
-  //     purchased: false
-  //   }
-  // }
-  // // const orderData = 'cat'
-  // // const orderDataJson = JSON.stringify(orderData)
-  // event.preventDefault()
-  // api.createOrder(orderData)
-  //   .then(ui.addToCartSuccess)
-  //   .catch(ui.failure)
 }
 
 module.exports = {

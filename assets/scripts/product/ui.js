@@ -11,15 +11,6 @@ const indexProductsSuccess = function (data) {
     $('display-products').html('')
     const showProductsIndex = showProductsTemplate({ products: data.products })
     $('.product-table').html(showProductsIndex)
-    /* data.products.forEach(function (product) {
-      const productHtml = (`
-        <p>Name: ${product.name}</p>
-        <h4>Price: ${product.price}</h4>
-        <h4>ID: ${product._id}</h4>
-        </ br>
-        `)
-      $('#display-products').append(productHtml)
-    }) */
     $('#show-product-form').trigger('reset')
     $('#display-orders').html('')
     $('#orders-empty-message').addClass('hidden')
