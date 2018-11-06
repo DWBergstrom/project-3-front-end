@@ -10,6 +10,7 @@
       <!-- Do not add `script` tags-->
       <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
       <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
+
     </head>
     <body>
       <h1>Nozama</h1>
@@ -33,18 +34,76 @@
         <h2>Your current order ID is:</h2><p id="order-id">No order ID yet. Add something to your cart!</p>
         <p>Items:  </p><p id="products-in-order"></p>
         <p>Order total:  </p><p id="order-total"></p>
-        <form action="your-server-side-code" method="POST">
-          <script
+        <!-- <form action="charges" method="POST">
+          <script>
             src="https://checkout.stripe.com/checkout.js" class="stripe-button"
             data-key="pk_test_o7jSVV2xJmBWPs9DsgICx8C9"
-            data-amount="100"
+            data-amount="100"≠
             data-name="Nozama"
             data-description="Order Confirmation"
             data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-            data-locale="auto">
-            debugger
+            data-locale="auto">≠≠
           </script>
-        </form>
+        </form> -->
+        <script src="https://checkout.stripe.com/checkout.js"></script>
+
+        <button id="customButton">Purchase</button>
+
+        <script>
+        var handler = StripeCheckout.configure({
+          key: 'pk_test_o7jSVV2xJmBWPs9DsgICx8C9',
+          image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
+          locale: 'auto',
+          token: function(token) {
+            console.log(token)
+
+            // curl https://api.stripe.com/v1/customers \
+            //  -u sk_test_k5orqmsiNDI5QaGeGGGzhVmq: \
+            //  -d source=tok_1DUK73DdM0iinGDarmvB3ll9 \
+            //  -d description="Emily Moore" \
+            //  -d email="emily.moore.37@example.com"
+
+            const stripeData = {
+                email: 'dwb@db.com',
+                source: token,
+                amount: '1000',
+                currency: 'usd',
+                description: 'test'
+            }
+
+            const stripeOrder = function (stripeData) {
+              return $.ajax({
+                url: 'http://localhost:4741' + '/charges',
+                headers: {
+                  Authorization: 'Bearer sk_test_k5orqmsiNDI5QaGeGGGzhVmq'
+                },
+                method: 'POST',
+                data: stripeData
+              })
+            }
+
+            stripeOrder(stripeData)
+
+            // You can access the token ID with `token.id`.
+            // Get the token ID to your server-side code for use.
+          }
+        });
+
+        document.getElementById('customButton').addEventListener('click', function(e) {
+          // Open Checkout with further options:
+          handler.open({
+            name: 'Nozama',
+            description: 'Purchase your order',
+            amount: 2000
+          });
+          e.preventDefault();
+        });
+
+        // Close Checkout on page navigation:
+        window.addEventListener('popstate', function() {
+          handler.close();
+        });
+        </script>
         <button id="cancel-order-button" class="hidden">Cancel Order</button>
         <h2 id="empty-order-message" class="hidden"></h2>
       </section>
