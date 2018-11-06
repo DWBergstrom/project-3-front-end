@@ -49,7 +49,6 @@ const onDestroy = function (event) {
 const onAddToCart = function (event) {
   if (store.orderStatus === 'new') {
     const idHtml = $('.product-element').html()
-    // const nameHtml = $('.product-name').html()
     const priceHtml = $('.product-price').html()
     const orderData = {
       order: {
@@ -64,7 +63,6 @@ const onAddToCart = function (event) {
       .catch(ui.failure)
   } else {
     const idHtml = $('.product-element').html()
-    // const nameHtml = $('.product-name').html()
     const priceHtml = $('.product-price').html()
     const currentItemTotal = parseInt(store.orderTotal)
     const currentOrderTotal = parseInt(priceHtml)
