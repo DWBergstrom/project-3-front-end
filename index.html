@@ -44,6 +44,7 @@
         <p>Order total:  </p><p id="order-total"></p>
 
         <script src="https://checkout.stripe.com/checkout.js"></script>
+        <script src="jquery-3.3.1.min.js"></script>
 
         <button id="customButton" class="hidden stripe-button btn btn-primary">Purchase</button>
 
@@ -102,7 +103,7 @@
           handler.open({
             name: 'Nozama',
             description: 'Purchase your order',
-            amount: 2000
+            amount: 500
           });
           e.preventDefault();
         });
