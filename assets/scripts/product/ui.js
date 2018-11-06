@@ -9,7 +9,7 @@ const createProductSuccess = function (data) {
   const productHtml = (`
     <p>Name: ${product.name}</p>
     <h4>Price: ${product.price}</h4>
-    <h4>ID: ${product.id}</h4>
+    <h4>ID: ${product._id}</h4>
     </ br>
     `)
   $('#display-products').html(productHtml)
@@ -36,7 +36,7 @@ const indexProductsSuccess = function (data) {
       const productHtml = (`
         <p>Name: ${product.name}</p>
         <h4>Price: ${product.price}</h4>
-        <h4>ID: ${product.id}</h4>
+        <h4>ID: ${product._id}</h4>
         </ br>
         `)
       $('#display-products').append(productHtml)
@@ -55,14 +55,14 @@ const indexProductsSuccess = function (data) {
 }
 
 const showProductSuccess = function (data) {
-  $('#products-empty-message').adClass('hidden')
+  $('#products-empty-message').addClass('hidden')
   $('#display-message').html('')
   $('#display-products').html('')
   const product = data.product
   const productHtml = (`
     <p>Name: ${product.name}</p>
     <h4>Price: ${product.price}</h4>
-    <h4>ID: ${product.id}</h4>
+    <h4>ID: ${product._id}</h4>
     </ br>
     `)
   $('#display-products').html(productHtml)
