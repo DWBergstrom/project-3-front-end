@@ -3,6 +3,7 @@
 const getFormFields = require('../../../lib/get-form-fields')
 const api = require('./api')
 const ui = require('./ui')
+const store = require('../store')
 
 const onCreate = function (event) {
   event.preventDefault()
@@ -45,10 +46,35 @@ const onDestroy = function (event) {
     .catch(ui.failure)
 }
 
+const onAddToCart = function (event) {
+  event.preventDefault()
+  const data = getFormFields(event.target)
+  if (store.orderStatus === 'new') {
+    console.log('order status is', store.orderStatus)
+    console.log('order data is', data)
+    api.createOrder(data)
+      .then(ui.createOrderSuccess)
+      .catch(ui.failure)
+    store.orderStatus = 'existing'
+    console.log('order status is', store.orderStatus)
+    console.log('order data is', data)
+    api.updateOrder(data)
+      .then(ui.updateOrderSuccess)
+      .catch(ui.failure)
+  } else {
+    console.log('order status is', store.orderStatus)
+    console.log('order data is', data)
+    api.updateOrder(data)
+      .then(ui.updateOrderSuccess)
+      .catch(ui.failure)
+  }
+}
+
 module.exports = {
   onCreate,
   onUpdate,
   onIndex,
   onShow,
-  onDestroy
+  onDestroy,
+  onAddToCart
 }
