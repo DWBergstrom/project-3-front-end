@@ -37,28 +37,37 @@
       </form>
       <br />
       <div id="products">
-        <button id="get-all-products-button" class="hidden">View All Products</button>
-        <br />
         <form id="show-product-form" class="hidden">
           <legend>View One Product</legend>
           <input required name="product[id]" type="text" placeholder="ID" />
           <input type="submit" />
         </form>
         <br />
-        <button id="add-to-order-button" class="hidden">Add To Order</button>
+        <div class="container">
+          <table class="table table-hover hidden table-striped table-bordered">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Price</th>
+              </tr>
+            </thead>
+            <tbody id="product-table" class="product-table"></tbody>
+          </table>
+        </div>
       </div>
       <div id="order">
-        <form id="create-order-form" class="hidden">
+        <!-- <form id="create-order-form" class="hidden">
           <legend>Create An Order</legend>
           <input required name="product[id]" type="text" placeholder="Product ID" />
           <input required name="order[total]" type="number" placeholder="Total" />
           <input required name="order[purchased]" type="text" placeholder="Purchased" />
           <input type="submit" />
         </form>
+        <br /> -->
+        <button id="get-all-orders-button" class="hidden">View Past Orders</button>
         <br />
-        <button id="get-all-orders-button" class="hidden">View All Orders</button>
-        <br />
-        <form id="show-order-form" class="hidden">
+        <!-- <form id="show-order-form" class="hidden">
           <legend>View One Order</legend>
           <input required name="order[id]" type="text" placeholder="Order ID" />
           <input type="submit" />
@@ -77,7 +86,7 @@
           <legend>Delete An Order</legend>
           <input required name="order[id]" type="text" placeholder="ID" />
           <input type="submit" />
-        </form>
+        </form> -->
       </div>
       <h2 id="products-empty-message"class="hidden">There are no products yet!</h2>
       <h2 id="orders-empty-message" class="hidden">There are no items in this order!</h2>

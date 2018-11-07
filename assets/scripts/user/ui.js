@@ -31,6 +31,7 @@ const signInSuccess = function (response) {
   $('#delete-order-form').removeClass('hidden')
   $('#display-products').removeClass('hidden')
   $('#display-orders').removeClass('hidden')
+  $('.table').removeClass('hidden')
 }
 
 const changePasswordSuccess = function () {
@@ -83,6 +84,7 @@ const signOutSuccess = function () {
   $('#delete-order-form').trigger('reset')
   $('#display-products').addClass('hidden')
   $('#display-orders').addClass('hidden')
+  $('.table').addClass('hidden')
 }
 
 const failure = function () {

@@ -1,5 +1,7 @@
 'use strict'
 
+const showProductsTemplate = require('../templates/product-list.handlebars')
+
 const indexProductsSuccess = function (data) {
   if (data.products.length === 0) {
     $('#display-message').html('')
@@ -7,7 +9,9 @@ const indexProductsSuccess = function (data) {
   } else {
     $('#display-message').html('')
     $('display-products').html('')
-    data.products.forEach(function (product) {
+    const showProductsIndex = showProductsTemplate({ products: data.products })
+    $('.product-table').html(showProductsIndex)
+    /* data.products.forEach(function (product) {
       const productHtml = (`
         <p>Name: ${product.name}</p>
         <h4>Price: ${product.price}</h4>
@@ -15,7 +19,7 @@ const indexProductsSuccess = function (data) {
         </ br>
         `)
       $('#display-products').append(productHtml)
-    })
+    }) */
     $('#show-product-form').trigger('reset')
     $('#display-orders').html('')
     $('#orders-empty-message').addClass('hidden')
