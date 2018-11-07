@@ -40,6 +40,7 @@ const signInSuccess = function (response) {
   $('.order').removeClass('hidden')
   $('#products-in-order').append(newOrder.products)
   $('#order-total').append(newOrder.total)
+  $('.table').removeClass('hidden')
 }
 
 const changePasswordSuccess = function () {
@@ -92,6 +93,7 @@ const signOutSuccess = function () {
   $('#delete-order-form').trigger('reset')
   $('#display-products').addClass('hidden')
   $('#display-orders').addClass('hidden')
+  $('.table').addClass('hidden')
 }
 
 const failure = function () {

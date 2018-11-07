@@ -1,0 +1,8 @@
+{{#each products as |product|}}
+  <tr.data-id="{{product._id}}">
+    <th scope="row">{{product._id}}</th>
+    <td>{{product.name}}</td>
+    <td>{{product.price}}</td>
+    <td type="submit" class="btn btn-primary">Add To Cart</td>
+  </tr>
+{{/each}}
