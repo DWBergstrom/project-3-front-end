@@ -3,14 +3,6 @@
 const config = require('../config.js')
 const store = require('../store.js')
 
-const createProduct = function (data) {
-  return $.ajax({
-    url: config.apiUrl + '/products',
-    method: 'POST',
-    data
-  })
-}
-
 const indexProducts = function () {
   return $.ajax({
     url: config.apiUrl + '/products',
@@ -26,28 +18,7 @@ const showProduct = function (productData) {
   })
 }
 
-const updateProduct = function (data) {
-  const productId = data.product.id
-  return $.ajax({
-    url: config.apiUrl + `/products/${productId}`,
-    method: 'PATCH',
-    data
-  })
-}
-
-const deleteProduct = function (data) {
-  const productId = data.product.id
-  return $.ajax({
-    url: config.apiUrl + `/products/${productId}`,
-    method: 'DELETE',
-    data
-  })
-}
-
 module.exports = {
-  createProduct,
   indexProducts,
-  showProduct,
-  updateProduct,
-  deleteProduct
+  showProduct
 }
