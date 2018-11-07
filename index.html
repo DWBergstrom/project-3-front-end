@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-      <title>Example</title>
+      <title>Nozama</title>
       <meta name="viewport" content="width=device-width, initial-scale=1">
 
       <!-- Do not add `link` tags-->
@@ -12,6 +12,99 @@
       <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
     </head>
     <body>
-      <h1>Browser Template</h1>
+      <h1>Nozama</h1>
+      <form id="sign-up-form">
+        <legend>Sign Up!</legend>
+        <input required name=credentials[email] type="text" placeholder="Email" />
+        <input required name=credentials[password] type="password" placeholder="Password" />
+        <input required name=credentials[password_confirmation] type="password" placeholder="Password Confirmation" />
+        <input type="submit" />
+      </form>
+      <br />
+      <form id="sign-in-form">
+        <legend>Sign In!</legend>
+        <input required name=credentials[email] type="text" placeholder="Email" />
+        <input required name=credentials[password] type="password" placeholder="Password" />
+        <input type="submit" />
+      </form>
+      <br />
+      <button id="sign-out-button" class="hidden">Sign Out!</button>
+      <form id="change-password-form" class="hidden">
+        <legend>Change Password!</legend>
+        <input required name=passwords[old] type="password" placeholder="Old Password" />
+        <input required name=passwords[new] type="password" placeholder="New Password" />
+        <input type="submit" />
+      </form>
+      <br />
+      <div id="products">
+        <form id="create-product-form" class="hidden">
+          <legend>Create A Product</legend>
+          <input required name="product[name]" type="text" placeholder="Name" />
+          <input required name="product[price]" type="number" placeholder="Price" />
+          <input type ="submit" />
+        </form>
+        <br />
+        <button id="get-all-products-button" class="hidden">View All Products</button>
+        <br />
+        <form id="show-product-form" class="hidden">
+          <legend>View One Product</legend>
+          <input required name="product[id]" type="text" placeholder="ID" />
+          <input type="submit" />
+        </form>
+        <br />
+        <form id="update-product-form" class="hidden">
+          <legend>Update A Product</legend>
+          <input required name="product[id]" type="text" placeholder="ID" />
+          <input required name="product[name]" type="text" placeholder="Name" />
+          <input required name="product[price]" type="number" placeholder="Price" />
+          <input type ="submit" />
+        </form>
+        <br />
+        <form id="delete-product-form" class="hidden">
+          <legend>Delete A Product</legend>
+          <input required name="product[id]" type="text" placeholder="ID" />
+          <input type="submit" />
+        </form>
+      </div>
+      <div id="order">
+        <form id="create-order-form" class="hidden">
+          <legend>Create An Order</legend>
+          <input required name="product[id]" type="text" placeholder="Product ID" />
+          <input required name="order[total]" type="number" placeholder="Total" />
+          <input required name="order[purchased]" type="text" placeholder="Purchased" />
+          <input type="submit" />
+        </form>
+        <br />
+        <button id="get-all-orders-button" class="hidden">View All Orders</button>
+        <br />
+        <form id="show-order-form" class="hidden">
+          <legend>View One Order</legend>
+          <input required name="order[id]" type="text" placeholder="Order ID" />
+          <input type="submit" />
+        </form>
+        <br />
+        <form id="update-order-form" class="hidden">
+          <legend>Update An Order</legend>
+          <input required name="order[products]" type="text" placeholder="Product ID" />
+          <input required name="order_id[id]" type="text" placeholder="Order ID" />
+          <input required name="order[total]" type="number" placeholder="Total" />
+          <input required name="order[purchased]" type="text" placeholder="Purchased" />
+          <input type="submit" />
+        </form>
+        <br />
+        <form id="delete-order-form" class="hidden">
+          <legend>Delete An Order</legend>
+          <input required name="order[id]" type="text" placeholder="ID" />
+          <input type="submit" />
+        </form>
+      </div>
+      <h2 id="products-empty-message"class="hidden">There are no products yet!</h2>
+      <h2 id="orders-empty-message" class="hidden">There are no items in this order!</h2>
+      <h2 id="display-message" class="hidden"></h2>
+      <h2 id="display-products" class="hidden"></h2>
+      <h2 id="display-orders" class="hidden"></h2>
+      <footer>
+        <p>Designed by Dave Bergstrom, Derek O'Neil, and Emmet Brault</p>
+      </footer>
     </body>
 </html>
