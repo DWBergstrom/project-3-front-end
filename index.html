@@ -45,6 +45,19 @@
           <input type="submit" />
         </form>
         <br />
+        <form id="update-product-form" class="hidden">
+          <legend>Update A Product</legend>
+          <input required name="product[id]" type="text" placeholder="ID" />
+          <input required name="product[name]" type="text" placeholder="Name" />
+          <input required name="product[price]" type="number" placeholder="Price" />
+          <input type ="submit" />
+        </form>
+        <br />
+        <form id="delete-product-form" class="hidden">
+          <legend>Delete A Product</legend>
+          <input required name="product[id]" type="text" placeholder="ID" />
+          <input type="submit" />
+        </form>
       </div>
       <div id="order">
         <form id="create-order-form" class="hidden">

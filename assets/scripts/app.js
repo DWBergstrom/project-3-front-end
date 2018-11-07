@@ -17,6 +17,7 @@ $(() => {
   $('#change-password-form').on('submit', userEvents.onChangePassword)
   $('#sign-out-button').on('click', userEvents.onSignOut)
   $('#get-all-products-button').on('click', productEvents.onIndex)
+  $('#add-to-order-button').on('click', orderEvents.onUpdate)
   $('#show-product-form').on('submit', productEvents.onShow)
   $('#create-order-form').on('submit', orderEvents.onCreate)
   $('#update-order-form').on('submit', orderEvents.onUpdate)
