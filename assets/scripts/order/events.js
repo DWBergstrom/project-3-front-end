@@ -39,8 +39,8 @@ const onShow = function (event) {
 }
 
 const onDestroy = function (event) {
+  const data = store.orderId
   event.preventDefault()
-  const data = getFormFields(event.target)
   api.deleteOrder(data)
     .then(ui.destroyOrderSuccess)
     .catch(ui.failure)
