@@ -7,7 +7,6 @@ const createOrderSuccess = function (data) {
   $('#orders-empty-message').addClass('hidden')
   $('#display-message').html('Add successful!')
   $('display-message').css('color', 'green')
-  console.log('data in createOrderSuccess is ', data)
   const order = data.order
   const orderHtml = (`
     <p>Name: ${order.name}</p>
@@ -16,19 +15,11 @@ const createOrderSuccess = function (data) {
     </ br>
     `)
   $('#display-orders').html(orderHtml)
-  $('#create-order-form').trigger('reset')
-  $('#update-order-form').trigger('reset')
-  $('#show-order-form').trigger('reset')
-  $('#delete-order-form').trigger('reset')
   $('#products-empty-message').addClass('hidden')
-  $('#create-product-form').trigger('reset')
-  $('#update-product-form').trigger('reset')
   $('#show-product-form').trigger('reset')
-  $('#delete-product-form').trigger('reset')
 }
 
 const indexOrdersSuccess = function (data) {
-  console.log('data in indexOrdersSuccess ', data)
   if (data.orders.length === 0) {
     $('#display-message').html('')
     $('#orders-empty-message').removeClass('hidden')
@@ -44,20 +35,12 @@ const indexOrdersSuccess = function (data) {
         `)
       $('#display-orders').append(orderHtml)
     })
-    $('#create-order-form').trigger('reset')
-    $('#update-order-form').trigger('reset')
-    $('#show-order-form').trigger('reset')
-    $('#delete-order-form').trigger('reset')
     $('#products-empty-message').addClass('hidden')
-    $('#create-product-form').trigger('reset')
-    $('#update-product-form').trigger('reset')
     $('#show-product-form').trigger('reset')
-    $('#delete-product-form').trigger('reset')
   }
 }
 
 const showOrderSuccess = function (data) {
-  console.log('data in show orders is ', data)
   $('#orders-empty-message').addClass('hidden')
   $('#display-message').html('')
   $('#display-orders').html('')
@@ -69,15 +52,8 @@ const showOrderSuccess = function (data) {
     </ br>
     `)
   $('#display-orders').html(orderHtml)
-  $('#create-order-form').trigger('reset')
-  $('#update-order-form').trigger('reset')
-  $('#show-order-form').trigger('reset')
-  $('#delete-order-form').trigger('reset')
   $('#products-empty-message').addClass('hidden')
-  $('#create-product-form').trigger('reset')
-  $('#update-product-form').trigger('reset')
   $('#show-product-form').trigger('reset')
-  $('#delete-product-form').trigger('reset')
 }
 
 const updateOrderSuccess = function (data) {
@@ -86,15 +62,14 @@ const updateOrderSuccess = function (data) {
   $('#display-message').html('Update successful!')
   $('#display-message').css('color', 'green')
   $('#display-orders').html('')
-  $('#create-order-form').trigger('reset')
-  $('#update-order-form').trigger('reset')
-  $('#show-order-form').trigger('reset')
-  $('#delete-order-form').trigger('reset')
   $('#products-empty-message').addClass('hidden')
-  $('#create-product-form').trigger('reset')
-  $('#update-product-form').trigger('reset')
   $('#show-product-form').trigger('reset')
-  $('#delete-product-form').trigger('reset')
+}
+
+const newOrder = {
+  products: 'Nothing in your cart yet',
+  purchased: 'false',
+  total: '0'
 }
 
 const destroyOrderSuccess = function () {
@@ -103,20 +78,23 @@ const destroyOrderSuccess = function () {
   $('#display-message').html('Deletion successful!')
   $('#display-message').css('color', 'green')
   $('#display-orders').html('')
-  $('#create-order-form').trigger('reset')
-  $('#update-order-form').trigger('reset')
-  $('#show-order-form').trigger('reset')
-  $('#delete-order-form').trigger('reset')
   $('#products-empty-message').addClass('hidden')
-  $('#create-product-form').trigger('reset')
-  $('#update-product-form').trigger('reset')
   $('#show-product-form').trigger('reset')
-  $('#delete-product-form').trigger('reset')
+  $('#products-in-order').html('')
+  $('#order-total').html('')
+  $('#order-status').html('')
+  $('#order-status').html('Nothing in your order')
+  store.orderStatus = 'new'
+  $('#order-id').html('')
+  $('#order-id').html('No order ID yet. Add something to your cart!')
+  store.orderId = null
+  $('#products-in-order').append(newOrder.products)
+  $('#order-total').append(newOrder.total)
 }
 
 const addToCartSuccess = function (data) {
   const order = data.order
-  store.orderStatus = 'pending'
+  store.orderStatus = 'Pending'
   store.orderId = data.order._id
   store.orderTotal = data.order.total
   store.orderQty = order.products.length
@@ -127,7 +105,7 @@ const addToCartSuccess = function (data) {
   $('#order-id').html(store.orderId)
   $('#products-in-order').html(`${order.products.length}`)
   $('#order-total').html(`${order.total}`)
-  $('#view-one-product-form').trigger('reset')
+  $('#show-product-form').trigger('reset')
   $('#change-password-form').trigger('reset')
 }
 
@@ -141,7 +119,7 @@ const updateCartSuccess = function () {
   $('#order-id').html(store.orderId)
   $('#products-in-order').html(`${store.orderQty}`)
   $('#order-total').html(`${store.orderTotal}`)
-  $('#view-one-product-form').trigger('reset')
+  $('#show-product-form').trigger('reset')
   $('#change-password-form').trigger('reset')
 }
 
@@ -150,15 +128,8 @@ const failure = function () {
   $('#display-orders').html('')
   $('#display-message').html('Something went wrong, please try again!')
   $('#display-message').css('color', 'red')
-  $('#create-order-form').trigger('reset')
-  $('#update-order-form').trigger('reset')
-  $('#show-order-form').trigger('reset')
-  $('#delete-order-form').trigger('reset')
   $('#products-empty-message').addClass('hidden')
-  $('#create-product-form').trigger('reset')
-  $('#update-product-form').trigger('reset')
   $('#show-product-form').trigger('reset')
-  $('#delete-product-form').trigger('reset')
 }
 
 module.exports = {

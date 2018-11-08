@@ -44,6 +44,8 @@
             data-locale="auto">
           </script>
         </form>
+        <button id="cancel-order-button" class="hidden">Cancel Order</button>
+        <h2 id="empty-order-message" class="hidden"></h2>
       </section>
       <br />
       <button id="sign-out-button" class="hidden">Sign Out!</button>
@@ -76,36 +78,8 @@
         </div>
       </div>
       <div id="order">
-        <!-- <form id="create-order-form" class="hidden">
-          <legend>Create An Order</legend>
-          <input required name="order[products]" type="text" placeholder="Product ID" />
-          <input required name="order[total]" type="number" placeholder="Total" />
-          <input required name="order[purchased]" type="text" placeholder="Purchased" />
-          <input type="submit" />
-        </form>
-        <br /> -->
         <button id="get-all-orders-button" class="hidden">View Past Orders</button>
         <br />
-        <!-- <form id="show-order-form" class="hidden">
-          <legend>View One Order</legend>
-          <input required name="order[id]" type="text" placeholder="Order ID" />
-          <input type="submit" />
-        </form>
-        <br />
-        <form id="update-order-form" class="hidden">
-          <legend>Update An Order</legend>
-          <input required name="order[products]" type="text" placeholder="Product ID" />
-          <input required name="order_id[id]" type="text" placeholder="Order ID" />
-          <input required name="order[total]" type="number" placeholder="Total" />
-          <input required name="order[purchased]" type="text" placeholder="Purchased" />
-          <input type="submit" />
-        </form>
-        <br />
-        <form id="delete-order-form" class="hidden">
-          <legend>Delete An Order</legend>
-          <input required name="order[id]" type="text" placeholder="ID" />
-          <input type="submit" />
-        </form> -->
       </div>
       <h2 id="products-empty-message"class="hidden">There are no products yet!</h2>
       <h2 id="orders-empty-message" class="hidden">There are no items in this order!</h2>

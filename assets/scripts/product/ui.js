@@ -32,7 +32,7 @@ const indexProductsSuccess = function (data) {
 }
 
 const onAddToOrder = function (event) {
-  console.log(event)
+  // console.log(event)
 }
 
 const showProductSuccess = function (data) {
