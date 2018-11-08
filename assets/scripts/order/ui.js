@@ -21,22 +21,32 @@ const createOrderSuccess = function (data) {
 
 const indexOrdersSuccess = function (data) {
   if (data.orders.length === 0) {
-    $('#display-message').html('')
-    $('#orders-empty-message').removeClass('hidden')
+    $('#display-message').html('There Are No Orders')
+    $('#display-message').css('color', 'red')
+    // $('#orders-empty-message').removeClass('hidden')
   } else {
-    $('#display-message').html('')
-    $('display-orders').html('')
+    $('#display-orders').html('')
+    let orderNum = 0
     data.orders.forEach(function (order) {
-      const orderHtml = (`
-        <p>Name: ${order.products}</p>
-        <h4>Total: ${order.price}</h4>
-        <h4>ID: ${order._id}</h4>
+      orderNum++
+      console.log(order.purchased)
+      order.products.forEach(function (product) {
+        const orderHtml = (`
+        <p>Order: ${orderNum}</p>
+        <h4>Name: ${product.name}</h4>
+        <h4>price:$ ${product.price}.00</h4>
+        <h4>Order Completed?: ${order.purchased}</h4>
         </ br>
         `)
-      $('#display-orders').append(orderHtml)
+        $('#display-orders').append(orderHtml)
+        $('#display-orders').css('color', 'green')
+        $('.reset').trigger('reset')
+      })
     })
     $('#products-empty-message').addClass('hidden')
     $('#show-product-form').trigger('reset')
+    $('#delete-product-form').trigger('reset')
+    $('#display-message').addClass('hidden')
   }
 }
 
@@ -120,6 +130,37 @@ const updateCartSuccess = function () {
   $('#products-in-order').html(`${store.orderQty}`)
   $('#order-total').html(`${store.orderTotal}`)
   $('#show-product-form').trigger('reset')
+  $('#change-password-form').trigger('reset')
+}
+
+const addToCartSuccess = function (data) {
+  const order = data.order
+  store.orderStatus = 'pending'
+  store.orderId = data.order._id
+  store.orderTotal = data.order.total
+  store.orderQty = order.products.length
+  $('#orders-empty-message').addClass('hidden')
+  $('#display-message').html('Add successful!')
+  $('#display-message').css('color', 'green')
+  $('#order-status').html(store.orderStatus)
+  $('#order-id').html(store.orderId)
+  $('#products-in-order').html(`${order.products.length}`)
+  $('#order-total').html(`${order.total}`)
+  $('#view-one-product-form').trigger('reset')
+  $('#change-password-form').trigger('reset')
+}
+
+const updateCartSuccess = function () {
+  store.orderTotal = store.orderTotal += 45
+  store.orderQty = store.orderQty += 1
+  $('#orders-empty-message').addClass('hidden')
+  $('#display-message').html('Add successful!')
+  $('#display-message').css('color', 'green')
+  $('#order-status').html(store.orderStatus)
+  $('#order-id').html(store.orderId)
+  $('#products-in-order').html(`${store.orderQty}`)
+  $('#order-total').html(`${store.orderTotal}`)
+  $('#view-one-product-form').trigger('reset')
   $('#change-password-form').trigger('reset')
 }
 
