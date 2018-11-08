@@ -26,23 +26,26 @@ const createOrderSuccess = function (data) {
 }
 
 const indexOrdersSuccess = function (data) {
-  console.log('data in indexOrdersSuccess ', data)
   if (data.orders.length === 0) {
-    $('#display-message').html('')
-    $('#orders-empty-message').removeClass('hidden')
+    $('#display-message').html('There Are No Orders')
+    $('#display-message').css('color', 'red')
+    // $('#orders-empty-message').removeClass('hidden')
   } else {
-    $('display-orders').html('')
+    $('#display-orders').html('')
+    let orderNum = 0
     data.orders.forEach(function (order) {
-      const orderHtml = (`
-        <p>Name: ${order.products[0].name}</p>
-        <h4>Total: ${order.products[0].price}</h4>
-        <h4>ID: ${order._id}</h4>
+      orderNum++
+      order.products.forEach(function (product) {
+        const orderHtml = (`
+        <p>Order: ${orderNum}</p>
+        <h4>Name: ${product.name}</h4>
+        <h4>price:$ ${product.price}.00</h4>
         </ br>
         `)
-      $('#display-message').html('')
-      $('#display-orders').append(orderHtml)
-      $('#display-orders').css('color', 'green')
-      $('.reset').trigger('reset')
+        $('#display-orders').append(orderHtml)
+        $('#display-orders').css('color', 'green')
+        $('.reset').trigger('reset')
+      })
     })
     $('#create-order-form').trigger('reset')
     $('#update-order-form').trigger('reset')
@@ -53,6 +56,7 @@ const indexOrdersSuccess = function (data) {
     $('#update-product-form').trigger('reset')
     $('#show-product-form').trigger('reset')
     $('#delete-product-form').trigger('reset')
+    $('#display-message').addClass('hidden')
   }
 }
 
