@@ -118,6 +118,18 @@ const destroyOrderSuccess = function () {
   $('#delete-product-form').trigger('reset')
 }
 
+const addToCartSuccess = function (data) {
+  const order = data.order
+  $('#orders-empty-message').addClass('hidden')
+  $('#display-message').html('Add successful!')
+  $('#display-message').css('color', 'green')
+  $('#order-status').html(`${order.status}`)
+  $('#products-in-order').html(`${order.products.length}`)
+  $('#order-total').html(`${order.total}`)
+  $('#view-one-product-form').trigger('reset')
+  $('#change-password-form').trigger('reset')
+}
+
 const failure = function () {
   $('#orders-empty-message').addClass('hidden')
   $('#display-orders').html('')
@@ -140,5 +152,6 @@ module.exports = {
   showOrderSuccess,
   updateOrderSuccess,
   destroyOrderSuccess,
+  addToCartSuccess,
   failure
 }
