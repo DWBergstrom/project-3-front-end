@@ -37,11 +37,13 @@ const indexOrdersSuccess = function (data) {
     let orderNum = 0
     data.orders.forEach(function (order) {
       orderNum++
+      console.log(order.purchased)
       order.products.forEach(function (product) {
         const orderHtml = (`
         <p>Order: ${orderNum}</p>
         <h4>Name: ${product.name}</h4>
         <h4>price:$ ${product.price}.00</h4>
+        <h4>Order Completed?: ${order.purchased}</h4>
         </ br>
         `)
         $('#display-orders').append(orderHtml)
