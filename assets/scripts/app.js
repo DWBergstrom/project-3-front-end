@@ -21,5 +21,5 @@ $(() => {
   $('#update-order-form').on('submit', orderEvents.onUpdate)
   $('#get-all-orders-button').on('click', orderEvents.onIndex)
   $('#show-order-form').on('submit', orderEvents.onShow)
-  $('#delete-order-form').on('submit', orderEvents.onDestroy)
+  // $('#delete-order-form').on('submit', orderEvents.onDestroy)
 })

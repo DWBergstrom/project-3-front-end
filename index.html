@@ -32,15 +32,16 @@
         <h2>Your current order status is:</h2>
         <p id="products-in-order">Items:  </p>
         <p id="order-total">Order total:  </p>
-        <form action="your-server-side-code" method="POST">
+        <form action="charges" method="POST">
           <script
             src="https://checkout.stripe.com/checkout.js" class="stripe-button"
             data-key="pk_test_o7jSVV2xJmBWPs9DsgICx8C9"
-            data-amount="0"
+            data-amount="100"
             data-name="Nozama"
             data-description="Order Confirmation"
             data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
             data-locale="auto">
+            debugger
           </script>
         </form>
       </section>

@@ -31,16 +31,18 @@ const indexOrdersSuccess = function (data) {
     $('#display-message').html('')
     $('#orders-empty-message').removeClass('hidden')
   } else {
-    $('#display-message').html('')
     $('display-orders').html('')
     data.orders.forEach(function (order) {
       const orderHtml = (`
-        <p>Name: ${order.products}</p>
-        <h4>Total: ${order.price}</h4>
+        <p>Name: ${order.products[0].name}</p>
+        <h4>Total: ${order.products[0].price}</h4>
         <h4>ID: ${order._id}</h4>
         </ br>
         `)
+      $('#display-message').html('')
       $('#display-orders').append(orderHtml)
+      $('#display-orders').css('color', 'green')
+      $('.reset').trigger('reset')
     })
     $('#create-order-form').trigger('reset')
     $('#update-order-form').trigger('reset')
