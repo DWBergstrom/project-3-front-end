@@ -65,10 +65,40 @@ const deleteOrder = function (data) {
   })
 }
 
+const addToCart = function (data) {
+  console.log(data)
+  if (store.orderStatus === 'new') {
+    // const orderId = data.order_id.id
+    console.log('order status is', store.orderStatus)
+    return $.ajax({
+      url: config.apiUrl + `/orders`,
+      headers: {
+        Authorization: `Token token=${store.user.token}`
+      },
+      method: 'POST',
+      data
+    })
+  } else {
+    console.log(data.order_id.id)
+    const orderId = data.order_id.id
+    delete data.order_id
+    console.log(data.order_id)
+    return $.ajax({
+      url: config.apiUrl + `/orders/${orderId}`,
+      headers: {
+        Authorization: `Token token=${store.user.token}`
+      },
+      method: 'PATCH',
+      data
+    })
+  }
+}
+
 module.exports = {
   createOrder,
   indexOrders,
   showOrder,
   updateOrder,
-  deleteOrder
+  deleteOrder,
+  addToCart
 }
