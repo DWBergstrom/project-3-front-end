@@ -48,7 +48,7 @@
         <button id="customButton" class="hidden stripe-button btn btn-primary">Purchase</button>
 
         <script>
-        var handler = StripeCheckout.configure({
+        const handler = StripeCheckout.configure({
           key: 'pk_test_o7jSVV2xJmBWPs9DsgICx8C9',
           image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
           locale: 'auto',
@@ -65,7 +65,7 @@
 
             const stripeOrder = function (stripeData) {
               return $.ajax({
-                url: 'https://cryptic-peak-41846.herokuapp.com' + '/charges',
+                url: 'http://localhost:4741' + '/charges',
                 headers: {
                   Authorization: 'Bearer sk_test_k5orqmsiNDI5QaGeGGGzhVmq'
                 },
@@ -102,7 +102,7 @@
           handler.open({
             name: 'Nozama',
             description: 'Purchase your order',
-            amount: 2000
+            amount: 4500
           });
           e.preventDefault();
         });

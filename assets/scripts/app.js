@@ -9,7 +9,6 @@
 const userEvents = require('./user/events.js')
 const productEvents = require('./product/events.js')
 const orderEvents = require('./order/events.js')
-const stripeEvents = require('./stripe/events.js')
 
 $(() => {
   $('#sign-up-form').on('submit', userEvents.onSignUp)
@@ -21,5 +20,4 @@ $(() => {
   $('#show-product-form').on('submit', productEvents.onShow)
   $('#get-all-orders-button').on('click', orderEvents.onIndex)
   $('#cancel-order-button').on('click', orderEvents.onDestroy)
-  $('#customButton').on('click', stripeEvents.onCheckout)
 })
