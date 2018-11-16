@@ -120,7 +120,7 @@ const addToCartSuccess = function (data) {
 }
 
 const updateCartSuccess = function () {
-  store.orderTotal = store.orderTotal += 45
+  store.orderTotal = store.orderTotal += 5
   store.orderQty = store.orderQty += 1
   $('#orders-empty-message').addClass('hidden')
   $('#display-message').html('Add successful!')
