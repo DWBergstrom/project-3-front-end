@@ -7,6 +7,15 @@ const signUpSuccess = function () {
   $('#display-message').html('Sign up successful!')
   $('#display-message').css('color', 'green')
   $('#sign-up-form').trigger('reset')
+  $('#sign-in-form').trigger('reset')
+}
+
+const signUpFailure = function () {
+  $('#display-message').removeClass('hidden')
+  $('#display-message').html('Something went wrong, please try again!')
+  $('#display-message').css('color', 'red')
+  $('#sign-up-form').trigger('reset')
+  $('#sign-in-form').trigger('reset')
 }
 
 const newOrder = {
@@ -22,6 +31,7 @@ const signInSuccess = function (response) {
   $('#display-message').html('Sign in successful!')
   $('#display-message').css('color', 'green')
   $('#sign-in-form').trigger('reset')
+  $('#sign-up-form').trigger('reset')
   $('#sign-up-form').addClass('hidden')
   $('#sign-in-form').addClass('hidden')
   $('#change-password-form').removeClass('hidden')
@@ -39,12 +49,29 @@ const signInSuccess = function (response) {
   $('#order-status-message').removeClass('hidden')
 }
 
+const signInFailure = function () {
+  $('#display-message').css('color', 'red')
+  $('#sign-up-form').trigger('reset')
+  $('#sign-in-form').trigger('reset')
+  $('#change-password-form').trigger('reset')
+  // $('#display-message').show()
+  $('#display-message').removeClass('hidden')
+  $('#display-message').html('')
+  $('#display-message').html('Something went wrong, please try again!').fadeIn(3000)
+}
+
 const changePasswordSuccess = function () {
   $('#display-message').removeClass('hidden')
   $('#display-message').html('Password changed successfully!')
   $('#display-message').css('color', 'green')
   $('#change-password-form').trigger('reset')
-  $('#show-product-form').trigger('reset')
+}
+
+const changePasswordFailure = function () {
+  $('#display-message').removeClass('hidden')
+  $('#display-message').html('Something went wrong, please try again!')
+  $('#display-message').css('color', 'red')
+  $('#change-password-form').trigger('reset')
 }
 
 const signOutSuccess = function () {
@@ -70,21 +97,18 @@ const signOutSuccess = function () {
   $('.order').addClass('hidden')
 }
 
-const failure = function () {
-  $('#display-message').removeClass('hidden')
+const signOutFailure = function () {
   $('#display-message').html('Something went wrong, please try again!')
   $('#display-message').css('color', 'red')
-  $('#sign-up-form').trigger('reset')
-  $('#sign-in-form').trigger('reset')
-  $('#change-password-form').trigger('reset')
-  $('#get-all-products-button').trigger('reset')
-  $('#show-product-form').trigger('reset')
 }
 
 module.exports = {
   signUpSuccess,
+  signUpFailure,
   signInSuccess,
+  signInFailure,
   changePasswordSuccess,
+  changePasswordFailure,
   signOutSuccess,
-  failure
+  signOutFailure
 }
