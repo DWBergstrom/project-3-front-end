@@ -50,8 +50,8 @@ const signInSuccess = function (response) {
   $('#empty-order-message').removeClass('hidden')
   $('#order-status-message').removeClass('hidden')
   productApi.indexProducts()
-  .then(productUi.indexProductsSuccess)
-  .catch(productUi.failure)
+    .then(productUi.indexProductsSuccess)
+    .catch(productUi.failure)
 }
 
 const signInFailure = function () {
@@ -98,6 +98,7 @@ const signOutSuccess = function () {
   $('#cancel-order-button').addClass('hidden')
   $('#empty-order-message').addClass('hidden')
   $('#order-status-message').addClass('hidden')
+  $('#order-status-message').html('')
   $('.table').addClass('hidden')
   $('.order').addClass('hidden')
 }
