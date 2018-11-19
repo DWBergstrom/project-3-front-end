@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <title>Nozama</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <!-- Do not add `link` tags-->
+      <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+
+      <!-- Do not add `script` tags-->
+      <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
+      <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
+
+
+    </head>
+    <body>
+      <h1>Nozama</h1>
+      <form id="sign-up-form">
+        <legend>Sign Up!</legend>
+        <input required name=credentials[email] type="text" placeholder="Email" />
+        <input required name=credentials[password] type="password" placeholder="Password" />
+        <input required name=credentials[password_confirmation] type="password" placeholder="Password Confirmation" />
+        <input type="submit" />
+      </form>
+      <br />
+      <form id="sign-in-form">
+        <legend>Sign In!</legend>
+        <input required name=credentials[email] type="text" placeholder="Email" />
+        <input required name=credentials[password] type="password" placeholder="Password" />
+        <input type="submit" />
+      </form>
+      <button id="sign-out-button" class="hidden">Sign Out!</button>
+      <form id="change-password-form" class="hidden">
+        <legend>Change Password!</legend>
+        <input required name=passwords[old] type="password" placeholder="Old Password" />
+        <input required name=passwords[new] type="password" placeholder="New Password" />
+        <input type="submit" />
+      </form>
+      <section class="order hidden">
+        <br />
+        <h2>Your current order status is:</h2><p id="order-status">Nothing in your order yet.</p>
+        <h2>Your current order ID is:</h2><p id="order-id">No order ID yet. Add something to your cart!</p>
+        <p>Items:  </p><p id="products-in-order"></p>
+        <p>Order total:  </p><p id="order-total"></p>
+
+        <script src="https://checkout.stripe.com/checkout.js"></script>
+        <script
+          src="https://code.jquery.com/jquery-3.3.1.min.js"
+          integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+          crossorigin="anonymous"></script>
+
+        <button id="customButton" class="hidden stripe-button btn btn-primary">Purchase</button>
+
+        <script>
+        const handler = StripeCheckout.configure({
+          key: 'pk_test_o7jSVV2xJmBWPs9DsgICx8C9',
+          image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
+          locale: 'auto',
+          token: function(token) {
+            // console.log(token)
+
+            const stripeData = {
+                email: 'e@e.com',
+                source: token,
+                amount: '500',
+                currency: 'usd',
+                description: 'energy drink'
+            }
+
+            const stripeOrder = function (stripeData) {
+              return $.ajax({
+                url: 'https://cryptic-peak-41846.herokuapp.com' + '/charges',
+                headers: {
+                  Authorization: 'Bearer sk_test_k5orqmsiNDI5QaGeGGGzhVmq'
+                },
+                method: 'POST',
+                data: stripeData
+              })
+            }
+            stripeOrder(stripeData)
+              .then(function (response) {
+                if (response === 'Created') {
+                  $('#order-status-message').html('Your payment was succesful!')
+                  // store.orderStatus = 'new'
+                  const newOrder = {
+                    products: 'Nothing in your cart yet',
+                    purchased: 'false',
+                    total: '0'
+                  }
+                  $('#display-message').html('')
+                  $('#display-orders').html('')
+                  $('#products-in-order').html(newOrder.products)
+                  $('#order-total').html(newOrder.total)
+                  $('#order-id').html('')
+                  $('#order-id').html('No order ID yet. Add something to your cart!')
+                  $('#order-status').html('')
+                  $('#order-status').html('Nothing in your order')
+                  $('.stripe-button').addClass('hidden')
+                } else {
+                  $('#order-status-message').html('There was a problem charging your card. Please try again.')
+                }
+              })
+          }
+        });
+
+        document.getElementById('customButton').addEventListener('click', function(e) {
+          // Open Checkout with further options:
+          handler.open({
+            name: 'Nozama',
+            description: 'Purchase your order',
+            amount: 500
+          });
+          e.preventDefault();
+        });
+
+        // Close Checkout on page navigation:
+        window.addEventListener('popstate', function() {
+          handler.close();
+        });
+        </script>
+        <button id="cancel-order-button" class="hidden">Cancel Order</button>
+        <h2 id="empty-order-message" class="hidden"></h2>
+        <h2 id="order-status-message" class="hidden"></h2>
+      </section>
+      <br />
+
+      <br />
+      <div id="products">
+        <br />
+        <div class="container">
+          <table class="table table-hover hidden table-striped table-bordered">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Price</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody id="product-table" class="product-table"></tbody>
+          </table>
+        </div>
+      </div>
+      <div id="order">
+        <button id="get-all-orders-button" class="hidden">View Past Orders</button>
+        <br />
+      </div>
+      <h2 id="products-empty-message"class="hidden">There are no products yet!</h2>
+      <h2 id="orders-empty-message" class="hidden">There are no items in this order!</h2>
+      <h2 id="display-message" class="hidden"></h2>
+      <h2 id="display-products" class="hidden"></h2>
+      <h2 id="display-orders" class="hidden"></h2>
+      <footer>
+        <p>Designed by Dave Bergstrom, Derek O'Neil, and Emmet Brault</p>
+      </footer>
+    </body>
+</html>
