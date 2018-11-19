@@ -1,6 +1,8 @@
 'use strict'
 
 const store = require('../store.js')
+const productApi = require('./../product/api.js')
+const productUi = require('./../product/ui.js')
 
 const signUpSuccess = function () {
   $('#display-message').removeClass('hidden')
@@ -47,6 +49,9 @@ const signInSuccess = function (response) {
   $('#cancel-order-button').removeClass('hidden')
   $('#empty-order-message').removeClass('hidden')
   $('#order-status-message').removeClass('hidden')
+  productApi.indexProducts()
+  .then(productUi.indexProductsSuccess)
+  .catch(productUi.failure)
 }
 
 const signInFailure = function () {
@@ -56,8 +61,8 @@ const signInFailure = function () {
   $('#change-password-form').trigger('reset')
   // $('#display-message').show()
   $('#display-message').removeClass('hidden')
-  $('#display-message').html('')
-  $('#display-message').html('Something went wrong, please try again!').fadeIn(3000)
+  // $('#display-message').html('')
+  $('#display-message').html('Something went wrong, please try again!')
 }
 
 const changePasswordSuccess = function () {

@@ -13,7 +13,7 @@ const orderEvents = require('./order/events.js')
 $(() => {
   $('#sign-up-form').on('submit', userEvents.onSignUp)
   $('#sign-in-form').on('submit', userEvents.onSignIn)
-  $('#sign-in-form').on('submit', productEvents.onIndex)
+  // $('#sign-in-form').on('submit', productEvents.onIndex)
   $('#change-password-form').on('submit', userEvents.onChangePassword)
   $('#sign-out-button').on('click', userEvents.onSignOut)
   $('.product-table').on('click', '.add-to-order', orderEvents.onAddToCart)
